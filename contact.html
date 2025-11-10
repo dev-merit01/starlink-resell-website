@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Sales | KuiperTech</title>
+  <link rel="stylesheet" href="contact.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <nav class="nav-container">
+      <div class="logo" onclick="window.location.href='/index.html'">Kuiper<span>Tech</span></div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="contact-hero reveal fade-in">
+    <div class="overlay"></div>
+    <div class="hero-text">
+      <h1>Contact Sales</h1>
+      <p>We’re here to help you get Starlink installed, configured, and supported professionally.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT INFO -->
+  <section class="contact-info reveal slide-up">
+    <div class="info-container">
+      <div class="info-card">
+        <i class="fa-solid fa-phone"></i>
+        <h3>Call Us</h3>
+        <p>+263 786 326 862</p>
+      </div>
+      <div class="info-card">
+        <i class="fa-solid fa-envelope"></i>
+        <h3>Email</h3>
+        <p>sales@kuipertech.co.zw</p>
+      </div>
+      <div class="info-card">
+        <i class="fa-solid fa-location-dot"></i>
+        <h3>Location</h3>
+        <p>Harare, Zimbabwe</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <section class="contact-section reveal slide-left">
+    <div class="form-container">
+      <h2>Get in Touch</h2>
+      <p>You can reach us anytime</p>
+       <form class="contact-form" id="contactForm" action="https://formspree.io/f/xkgkwogj" method="POST">
+          <input type="text" id="name" name="name" placeholder="Your Name" required> 
+          <input type="email" id="email" name="email" placeholder="Your Email" required>
+          <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+          <button type="submit" class="contact-btn">Send Message</button>
+        </form>
+    </div>
+    <div class="map-container">
+      <!-- Placeholder for a Google Map embed -->
+      <iframe
+        src="https://www.google.com/maps?q=Harare,%20Zimbabwe&output=embed"
+        allowfullscreen=""
+        loading="lazy">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section reveal fade-in">
+    <h2>Need Quick Assistance?</h2>
+    <p>Call us directly and get expert support today!</p>
+    <a href="tel:+263786326862" class="cta-btn">Call Now</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2025 KuiperTech - Authorized Starlink Reseller. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Burger Menu
+    const burger = document.querySelector('.burger');
+    const navLinks = document.querySelector('.nav-links');
+    burger.addEventListener('click', () => {
+      navLinks.classList.toggle('nav-active');
+      burger.classList.toggle('toggle');
+    });
+
+    // Form Submission Handler
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const subject = document.getElementById("subject").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (name && email && subject && message) {
+        alert(`Thank you, ${name}! Your message has been sent successfully.`);
+        this.reset();
+      } else {
+        alert("Please fill in all fields before submitting.");
+      }
+    });
+
+    // On-scroll animations (IntersectionObserver)
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      });
+    }, { threshold: 0.2 });
+    reveals.forEach(rev => observer.observe(rev));
+  </script>
+</body>
+</html>
